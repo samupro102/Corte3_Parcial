@@ -8,6 +8,17 @@ package modelo;
  *
  * @author Windows 11
  */
-public class MonstruoNormal {
-    
+public class MonstruoNormal extends Monstruo {
+
+    public MonstruoNormal(String nombre, int atq, int def, Posicion posicion) {
+        setNombre(nombre);
+        setAtq(atq);
+        setDef(def);
+        setPosicion(posicion);
+    }
+
+    @Override
+    public int calcularPoderEfectivo() {
+        return getAtq();
+    }
 }
