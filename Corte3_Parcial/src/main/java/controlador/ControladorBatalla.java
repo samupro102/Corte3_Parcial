@@ -214,6 +214,14 @@ public class ControladorBatalla implements ActionListener {
 
     // ---------- Auxiliares ----------
 
+       public ArrayList<Jugador> listaJugadores() {
+        return new ArrayList<>(jugadores);
+    }
+
+    public ArrayList<RegistroAtaque> listaHistorial() {
+        return new ArrayList<>(historial);
+    }
+    
     private void exigirDuelo() {
         if (!dueloActivo) {
             throw new IllegalStateException("Primero debe iniciar un duelo.");
