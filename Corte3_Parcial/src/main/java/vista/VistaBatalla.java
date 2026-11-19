@@ -12,6 +12,73 @@ import javax.swing.JOptionPane;
  * @author Windows 11
  */
 public class VistaBatalla extends javax.swing.JFrame {
+        // ---------- Conexión de eventos (los escucha el controlador) ----------
+
+    public void conectarEventos(ActionListener escucha) {
+        btnIniciarDuelo.setActionCommand("INICIAR");
+        btnCrearMonstruo.setActionCommand("CREAR_MONSTRUO");
+        btnAtacar.setActionCommand("ATACAR");
+        btnCargarHistorial.setActionCommand("CARGAR_HISTORIAL");
+        btnGuardarHistorial.setActionCommand("GUARDAR_HISTORIAL");
+        cmbAtacante.setActionCommand("CAMBIO_ATACANTE");
+
+        btnIniciarDuelo.addActionListener(escucha);
+        btnCrearMonstruo.addActionListener(escucha);
+        btnAtacar.addActionListener(escucha);
+        btnCargarHistorial.addActionListener(escucha);
+        btnGuardarHistorial.addActionListener(escucha);
+        cmbAtacante.addActionListener(escucha);
+    }
+
+    // ---------- Lectura de lo que escribió el usuario ----------
+
+    public String leerJugador1() { return txtJugador1.getText(); }
+    public String leerJugador2() { return txtJugador2.getText(); }
+    public String leerNombreMonstruo() { return txtNombreMonstruo.getText(); }
+    public String leerAtq() { return txtAtq.getText(); }
+    public String leerDef() { return txtDef.getText(); }
+    public String leerTipo() { return (String) cmbTipo.getSelectedItem(); }
+    public String leerPosicion() { return (String) cmbPosicion.getSelectedItem(); }
+    public int indiceDueno() { return cmbDueno.getSelectedIndex(); }
+    public int indiceAtacante() { return cmbAtacante.getSelectedIndex(); }
+    public int indiceObjetivo() { return cmbObjetivo.getSelectedIndex(); }
+
+    // ---------- Mostrar información ----------
+
+    public void cargarDuenos(List<String> items) {
+        cmbDueno.setModel(new DefaultComboBoxModel<>(items.toArray(new String[0])));
+    }
+
+    public void cargarAtacantes(List<String> items) {
+        cmbAtacante.setModel(new DefaultComboBoxModel<>(items.toArray(new String[0])));
+    }
+
+    public void cargarObjetivos(List<String> items) {
+        cmbObjetivo.setModel(new DefaultComboBoxModel<>(items.toArray(new String[0])));
+    }
+
+    public void mostrarLP(String textoJugador1, String textoJugador2) {
+        lblLpJugador1.setText(textoJugador1);
+        lblLpJugador2.setText(textoJugador2);
+    }
+
+    public void agregarAlHistorial(String linea) {
+        txtAreaHistorial.append(linea + System.lineSeparator());
+    }
+
+    public void mostrarHistorial(List<String> lineas) {
+        txtAreaHistorial.setText(String.join(System.lineSeparator(), lineas));
+    }
+
+    public void limpiarCamposMonstruo() {
+        txtNombreMonstruo.setText("");
+        txtAtq.setText("");
+        txtDef.setText("");
+    }
+
+    public void mostrarMensaje(String texto) {
+        JOptionPane.showMessageDialog(this, texto);
+    }
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaBatalla.class.getName());
 
